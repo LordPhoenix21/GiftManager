@@ -16,7 +16,7 @@
             Prénom : <input type = "text" name = "prenom" /></br>
             Adresse mail : <input type = "text" name = "mail" /></br>
             Age : <input type = "text" name = "age" /></br>
-            Login : <input type = "text" name = "login" /></br>
+            Login : <input type = "text" name = "user" /></br>
             Mot de passe : <input type = "text" name = "mdp" /></br>
             Confirmez Mot de passe : <input type = "text" name = "mdpConfirm" /></br>
             <input type = "submit" value ="Inscription">
