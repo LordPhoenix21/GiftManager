@@ -1,6 +1,9 @@
 <?php
-   require_once("../Modele/bd.php");
-  
+    require_once("../Modele/bd.php");
+    require_once("../Modele/utilisateur.php");
+
+    session_start();
+
     if (isset($_POST['user'])) {
        
         $user = $_POST['user']; 
@@ -8,30 +11,40 @@
              
         $bd = new bd();
         $bd->connect(); 
-        $verifUser = "SELECT user FROM utilisateur";
-        $result = mysqli_query($bd->co, $verifUser);
+        $verifUser = "SELECT * FROM utilisateur";
+        $resultUSer = mysqli_query($bd->co, $verifUser);
 
         $found = false;
             
-        while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+        //Verification de l'existance du compte
+        while($row = mysqli_fetch_array($resultUSer,MYSQLI_ASSOC)){
             if($row["user"] == $user){
                 $found = true;
                 break;
             }
         }
         if($found){
-            $verifMdp = "SELECT mdp FROM utilisateur WHERE user = '$user'";
-            $result = mysqli_query($bd->co, $verifMdp);
+            //Verification du Mdp
+            $verif = "SELECT * FROM utilisateur WHERE user = '$user'";
+            $result = mysqli_query($bd->co, $verif);
             $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
             if($mdp == $row["mdp"]){  
-                echo "Bonjour ".$user;
+
+                //Creation de la variable de Session utilisateur afin d'y acceder plus simplement à travers tout le site
+                $_SESSION['utilisateur'] = new utilisateur($row["id"],$row["nom"],$row["prenom"],$row["mail"],$row["age"],$row["actif"],$row["user"],$row["mdp"]);                
+                $_SESSION['verifUser'] = true;
+                $_SESSION['verifMdp'] = true;
+
+                header("Location: ../Vue/page_interne.php");
             }
             else{
-                echo "Mot de Passe Faux";
+                $_SESSION['verifMdp'] = false;
+                header("Location: ../Vue/index.php");
             }
         }
         else{
-            echo "Ce compte n'existe pas";
+            $_SESSION['verifUser'] = false;
+            header("Location: ../Vue/index.php");
         } 
     }
 ?>

@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    $_SESSION['utilisateur'] = null;  //Page d'acceuil uniquement accessible déconnecté.
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,298 +15,35 @@
         <section class ="container">
             <div class ="description"> 
                 <h2>Qui sommes-nous ?</h2>
-                Gift Manager est un site de gestion de liste de cadeau. Il vous permettera de gérer vos liste de cadeaux en regroupant vos amis et votre famille dans differents groupe.</br>
+                Gift Manager est un site de gestion de liste de cadeau. Il vous permettera de gérer vos liste de cadeaux en regroupant vos amis et votre famille dans differents groupe.<br>
                 Ce site à été créer par Pierre Nicholson et Lucas Payet, dans le cadre du projet tuteuré S3 de l'IUT d'Orsay.  
             </div>
             <div class = "connexion">
                 <h2>Connexion</h2>
-                Connectez-vous pour accéder à GiftManager.</br>
+                Connectez-vous pour accéder à GiftManager.<br>
                 Pas encore de compte ? Cliquez <a href = "formulaire_inscription.php">ici</a> pour en créer un.
                 <form method = "post" action ="../Controleur/connexion.php">
-                    Nom d'utilisateur : <input type = "text" name = "user"></br>
-                    Mot de passe : <input type = "text" name = "mdp"></br>
+                    Nom d'utilisateur : <input type = "text" name = "user">
+                    <?php
+                        if($_SESSION['utilisateur'] != null){                    
+                             if($_SESSION['verifUser'] == false){
+                                echo "Ce nom d'utilisateur n'existe pas.";
+                            }
+                        }
+                    ?>
+                    <br>
+                    Mot de passe : <input type = "text" name = "mdp">
+                    <?php
+                        if($_SESSION['utilisateur'] != null){                    
+                             if($_SESSION['verifMdp'] == false){
+                                echo "Mot de passe Faux.";
+                            }
+                        }
+                    ?>
+                    <br>
                     <input type = "submit" value ="Connexion">
                 </form>
             </div>
         </section>
-    </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </body>
 </html>
