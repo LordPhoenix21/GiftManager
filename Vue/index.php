@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION['utilisateur'] = null;  //Page d'acceuil uniquement accessible déconnecté.
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +11,15 @@
     </head>
     <body>
         <h1>Bienvenue sur Gift Manager</h1>
+
+        <?php  
+            if(isset($_SESSION['inscriptionValidee'])){             
+                if($_SESSION['inscriptionValidee'] == true){
+                    echo "Votre inscription a été effectuée, vous pouvez maintenant vous connecter";
+                }
+            }
+        ?> 
+
         <section class ="container">
             <div class ="description"> 
                 <h2>Qui sommes-nous ?</h2>
@@ -25,7 +33,7 @@
                 <form method = "post" action ="../Controleur/connexion.php">
                     Nom d'utilisateur : <input type = "text" name = "user">
                     <?php
-                        if($_SESSION['utilisateur'] != null){                    
+                        if(isset($_SESSION['verifUser'])){                    
                              if($_SESSION['verifUser'] == false){
                                 echo "Ce nom d'utilisateur n'existe pas.";
                             }
@@ -34,7 +42,7 @@
                     <br>
                     Mot de passe : <input type = "text" name = "mdp">
                     <?php
-                        if($_SESSION['utilisateur'] != null){                    
+                        if(isset($_SESSION['verifMdp'])){                    
                              if($_SESSION['verifMdp'] == false){
                                 echo "Mot de passe Faux.";
                             }

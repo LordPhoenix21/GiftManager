@@ -24,15 +24,16 @@
             }
         }
         if($found){
-            //Verification du Mdp
+            //Verification du Mdp                
+            $_SESSION['verifUser'] = true;
+
             $verif = "SELECT * FROM utilisateur WHERE user = '$user'";
             $result = mysqli_query($bd->co, $verif);
             $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
             if($mdp == $row["mdp"]){  
 
                 //Creation de la variable de Session utilisateur afin d'y acceder plus simplement à travers tout le site
-                $_SESSION['utilisateur'] = new utilisateur($row["id"],$row["nom"],$row["prenom"],$row["mail"],$row["age"],$row["actif"],$row["user"],$row["mdp"]);                
-                $_SESSION['verifUser'] = true;
+                $_SESSION['utilisateur'] = new utilisateur($row["id"],$row["nom"],$row["prenom"],$row["mail"],$row["age"],$row["actif"],$row["user"],$row["mdp"]);
                 $_SESSION['verifMdp'] = true;
 
                 header("Location: ../Vue/page_interne.php");
