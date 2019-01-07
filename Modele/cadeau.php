@@ -1,5 +1,7 @@
 <?php
 
+class cadeau{
+
     private $num;
     private $nom;
     private $lien;
@@ -13,4 +15,8 @@
         $this->image = $image;
         $this->desc = $desc;
     }
+    public function getNom(){
+        return $this->nom;
+    }
+}
 ?>

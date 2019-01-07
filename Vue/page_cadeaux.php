@@ -1,5 +1,6 @@
 <?php
-    session_start();
+   require_once("../Modele/cadeau.php");
+   session_start();    
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +22,15 @@
         </div> 
     </header>
     <body>
-        <?php
-
-        ?>
+        <ul>
+            <?php
+                foreach( $_SESSION["array_cadeau"] as $cad){
+                    ?>
+                    <li><?php echo $cad->getNom();?></li>
+                    <?php
+                }
+            ?>
+            <li><a href = "../Vue/formulaire_cadeau.php">Creer un cadeau</a></li>
+        </ul>
     </body>
 </html>

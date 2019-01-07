@@ -47,12 +47,12 @@
                     if(mysqli_query($bd->co,$requete)){
                         $_SESSION['inscriptionValidee'] = true;
                         header("Location: ../Vue/index.php");
+                    }
+                    else{
+                        $_SESSION['inscriptionError'] = true;
+                        header("Location: ../Vue/formulaire_inscription.php");
+                    }
                 } 
-                else{
-                    $_SESSION['inscriptionError'] = true;
-                    header("Location: ../Vue/formulaire_inscription.php");
-                }
-                }
                 else{
                     $_SESSION['userEnregistre'] = true;
                     header("Location: ../Vue/formulaire_inscription.php");
