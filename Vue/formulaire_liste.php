@@ -11,35 +11,22 @@
     </head>
     <body>
         <?php
-            if(isset($_SESSION["cadeauError"])){
-                if($_SESSION["cadeauError"]){
-                    echo "Il ya eu une erreur dans la création du cadeau";
+            if(isset($_SESSION["listeError"])){
+                if($_SESSION["listeError"]){
+                    echo "Il ya eu une erreur dans la création de la liste";
                 }
             }
                 
         ?> 
-        Seul le champ nom est obligatoire
-        <form method = "post" action ="../Controleur/creer_cadeau.php">
+        <form method = "post" action ="../Controleur/creer_liste.php">
             Nom : <input type = "text" name = "nom" />
             <?php 
-                if(isset($_SESSION["cadNom"])){                    
-                    if(!($_SESSION["cadNom"])){
+                if(isset($_SESSION["lisNom"])){                    
+                    if(!($_SESSION["lisNom"])){
                         echo " Ce champ n'a pas été rempli";
                     }
-                } 
-                if(isset($_SESSION["cadeauEnregistre"])){
-                    if($_SESSION["cadeauEnregistre"]){
-                        echo " Ce nom de cadeau existe déjà veuillez en choisir un autre";
-                    }
-                }
-                
+                }                 
                 ?> 
-            <br>
-            Lien : <input type = "text" name = "lien" />
-            <br>
-            Adresse de l'image : <input type = "text" name = "img" />
-            <br>
-            Description : <input type = "text" name = "desc" />
             <br>
             <input type = "submit" value ="Créer">
         </form>

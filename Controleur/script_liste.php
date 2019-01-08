@@ -1,18 +1,23 @@
 <?php
-    session_start();
     require_once("../Modele/bd.php");
+    require_once("../Modele/utilisateur.php");
+    require_once("../Modele/liste.php");
+    session_start();
 
     $bd = new bd();
     $bd->connect();
-    $requete = "SELECT * FROM cadeau";
+    $user = unserialize($_SESSION['utilisateur']);
+    $id = $user->getId();
+
+    $requete = "SELECT * FROM liste WHERE id_utilisateur = $id";
     $result = mysqli_query($bd->co,$requete);
 
-    $array_cadeau = array();
+    $array_liste = array();
     while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
     {                    
-        $array_cadeau[] = new cadeau($row['num'],$row['nom'],$row['lien'],$row['image'],$row['description']);
+        $array_liste[] = new liste($row['num'],$row['numUser'],$row['nom'],null,null,null);
     }
-    $_SESSION["array_cadeau"] = $array_cadeau;
+    $_SESSION["array_liste"] = $array_liste;
 
-   header("Location: ../Vue/page_cadeaux.php");
+   header("Location: ../Vue/page_liste.php");
 ?>

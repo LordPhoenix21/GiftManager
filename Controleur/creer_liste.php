@@ -1,11 +1,11 @@
 <?php
     require_once("../Modele/bd.php");
+    require_once("../Modele/utilisateur.php");
     session_start();
 
-    $_SESSION['cadNom'] = true;
-    $_SESSION['cadeauValide'] = false;
-    $_SESSION['cadeauError'] = false;
-    $_SESSION['cadeauEnregistre'] = false;
+    $_SESSION['lisNom'] = true;
+    $_SESSION['listeValidee'] = false;
+    $_SESSION['listeError'] = false;
 
     if ($_POST["nom"] != null) {
         
@@ -13,19 +13,21 @@
 
         $bd = new bd();
         $bd->connect(); 
-        
-        $requete = "INSERT INTO liste (id_utilisateur, nom) VALUES ('$_SESSION['utilisateur']->getId()','$nom')";
+        $user = unserialize($_SESSION['utilisateur']);
+        $id = $user->getId();
+
+        $requete = "INSERT INTO liste (id_utilisateur, nom) VALUES ('$id','$nom')";
         if(mysqli_query($bd->co,$requete)){
-            $_SESSION['cadeauValide'] = true;
-            header("Location: ../Controleur/script_cadeaux.php");
+            $_SESSION['listeValidee'] = true;
+            header("Location: ../Controleur/script_liste.php");
         }
         else{
-            $_SESSION['cadeauError'] = true;
-            header("Location: ../Vue/formulaire_cadeau.php");
+            $_SESSION['listeError'] = true;
+            header("Location: ../Vue/formulaire_liste.php");
         }
     }    
     else{
-        if($_POST['nom'] == null) $_SESSION['cadNom'] = false;
+        if($_POST['nom'] == null) $_SESSION['lisNom'] = false;
 
-        header("Location: ../Vue/formulaire_cadeau.php");
+        header("Location: ../Vue/formulaire_liste.php");
     }
