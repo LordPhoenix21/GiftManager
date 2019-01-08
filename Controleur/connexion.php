@@ -33,7 +33,7 @@
             if($mdp == $row["mdp"]){  
 
                 //Creation de la variable de Session utilisateur afin d'y acceder plus simplement à travers tout le site
-                $_SESSION['utilisateur'] = new utilisateur($row["id"],$row["nom"],$row["prenom"],$row["mail"],$row["age"],$row["actif"],$row["user"],$row["mdp"]);
+                $_SESSION['utilisateur'] = serialize(new utilisateur($row["id"],$row["nom"],$row["prenom"],$row["mail"],$row["age"],$row["actif"],$row["user"],$row["mdp"]));
                 $_SESSION['verifMdp'] = true;
 
                 header("Location: ../Vue/page_interne.php");
