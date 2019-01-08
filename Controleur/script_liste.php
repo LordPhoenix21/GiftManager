@@ -15,7 +15,7 @@
     $array_liste = array();
     while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
     {                    
-        $array_liste[] = new liste($row['num'],$row['numUser'],$row['nom'],null,null,null);
+        $array_liste[] = new liste($row['id'],$row['id_utilisateur'],$row['nom']);
     }
     $_SESSION["array_liste"] = $array_liste;
 

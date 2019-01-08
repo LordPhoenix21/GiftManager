@@ -2,14 +2,14 @@
 
 class cadeau{
 
-    private $num;
+    private $id;
     private $nom;
     private $lien;
     private $image;
     private $desc;
 
-    public function __construct($num,$nom,$lien,$image,$desc){
-        $this->num = $num;
+    public function __construct($id,$nom,$lien,$image,$desc){
+        $this->id = $id;
         $this->nom = $nom;
         $this->lien = $lien;
         $this->image = $image;
@@ -17,6 +17,9 @@ class cadeau{
     }
     public function getNom(){
         return $this->nom;
+    }
+    public function getId(){
+        return $this->id;
     }
 }
 ?>

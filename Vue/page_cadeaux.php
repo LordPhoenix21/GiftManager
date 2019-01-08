@@ -14,7 +14,7 @@
         <img src="Logo.png" class = "logo" alt="Logo" height="2%" width="2%">
         <div class = "header-liens"> 
             <a href = "page_groupe.php"> Vos Groupes </a>
-            <a href = "page_liste.php"> Vos Listes </a>
+            <a href = "../Controleur/script_liste.php"> Vos Listes </a>
             <a href = "../Controleur/script_cadeaux.php"> Les cadeaux </a>
         </div>
         <div class = "header-droite">
@@ -22,15 +22,74 @@
         </div> 
     </header>
     <body>
-        <ul>
+        <?php
+        if(isset($_GET['idListe'])){
+            echo($_GET['idListe']);
+            //Affichage en checkbox pour la selection des cadeaux
+            ?>
+            <form method = "post" action ="../Controleur/liste_ajouter.php?idListe=<?php echo $_GET['idListe']; ?>">
             <?php
                 foreach( $_SESSION["array_cadeau"] as $cad){
                     ?>
-                    <li><?php echo $cad->getNom();?></li>
+                    <?php echo $cad->getId();?>
+                    <input type="checkbox" name="cadeau[]" value = "<?php echo $cad->getId();?>">
+                    <label for="<?php $cad->getNom();?>"><?php echo $cad->getNom();?></label>
+                    <br>
                     <?php
-                }
+                } 
+                ?>
+                <input type = "submit" value ="Ajouter">
+            </form>
+            <?php
+        }
+        else{
+            //Affichage normal
+            foreach( $_SESSION["array_cadeau"] as $cad){
+                echo $cad->getNom();?><br>
+                <?php
+            }  
             ?>
-            <li><a href = "../Vue/formulaire_cadeau.php">Creer un cadeau</a></li>
-        </ul>
+            <a href = "page_cadeaux.php?creerCadeau=true">Creer un cadeau</a>
+            <?php
+        }         
+        ?>
+        <?php    
+            //Cas de la création d'un cadeau
+            if(isset($_SESSION["cadeauError"])){
+                if($_SESSION["cadeauError"]){
+                    echo "Il ya eu une erreur dans la création du cadeau";
+                }
+            }
+            if(isset($_GET['creerCadeau'])){
+                ?>
+                Seul le champ nom est obligatoire
+                <form method = "post" action ="../Controleur/creer_cadeau.php">
+                Nom : <input type = "text" name = "nom" />
+                <?php 
+                    if(isset($_SESSION["cadNom"])){                    
+                        if(!($_SESSION["cadNom"])){
+                            echo " Ce champ n'a pas été rempli";
+                        }
+                    } 
+                    if(isset($_SESSION["cadeauEnregistre"])){
+                        if($_SESSION["cadeauEnregistre"]){
+                            echo " Ce nom de cadeau existe déjà veuillez en choisir un autre";
+                        }
+                    }
+                    
+                    ?> 
+                <br>
+                Lien : <input type = "text" name = "lien" />
+                <br>
+                Adresse de l'image : <input type = "text" name = "img" />
+                <br>
+                Description : <input type = "text" name = "desc" />
+                <br>
+                <input type = "submit" value ="Créer">
+            </form>
+            <?php
+            }
+        ?>
+                
     </body>
 </html>

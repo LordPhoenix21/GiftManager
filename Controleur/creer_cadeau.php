@@ -35,18 +35,18 @@
             }
             else{
                 $_SESSION['cadeauError'] = true;
-                header("Location: ../Vue/formulaire_cadeau.php");
+                header("Location: ../Vue/page_cadeaux.php?creerCadeau=true");
             }
         } 
         else{
             $_SESSION['cadeauEnregistre'] = true;
-            header("Location: ../Vue/formulaire_cadeau.php");
+            header("Location: ../Vue/page_cadeaux.php?creerCadeau=true");
         }
 
     }    
     else{
         if($_POST['nom'] == null) $_SESSION['cadNom'] = false;
 
-        header("Location: ../Vue/formulaire_cadeau.php");
+        header("Location: ../Vue/page_cadeaux.php?creerCadeau=true");
     }
-?>
+?>  

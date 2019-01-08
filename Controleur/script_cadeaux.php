@@ -15,5 +15,13 @@
     }
     $_SESSION["array_cadeau"] = $array_cadeau;
 
-   header("Location: ../Vue/page_cadeaux.php");
+   if(isset($_GET['idListe'])){
+        $id = intval($_GET['idListe']);
+        header("Location: ../Vue/page_cadeaux.php?idListe=$id");
+   }    
+   else{
+        header("Location: ../Vue/page_cadeaux.php");
+   }
+    
+
 ?>

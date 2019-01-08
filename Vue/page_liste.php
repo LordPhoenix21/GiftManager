@@ -22,15 +22,22 @@
         </div> 
     </header>
     <body>
-        <ul>
             <?php
                 foreach($_SESSION["array_liste"] as $lis){
                     ?>
-                    <li><?php echo $lis->getNom();?>    </li>
+                        <table>
+                            <tr>
+                                <th><?php echo $lis->getNom();?></th>
+                                <th><?php echo $lis->getId();?></th>
+                            </tr>
+                            <tr>
+                                <td><a href = "../Controleur/script_cadeaux.php?idListe=<?php echo $lis->getId() ?> ">Ajouter un cadeau</a></td>
+                            </tr>
+                        </table>
                     <?php
                 }
             ?>
-            <li><a href = "../Vue/formulaire_liste.php">Creer une liste</a></li>
-        </ul>
+            <br>
+            <a href = "../Vue/formulaire_liste.php">Creer une liste</a>
     </body>
 </html>

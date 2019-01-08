@@ -31,3 +31,4 @@
 
         header("Location: ../Vue/formulaire_liste.php");
     }
+?>
