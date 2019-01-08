@@ -1,8 +1,12 @@
 <?php
-    session_start();
     require_once("../Modele/bd.php");
+    session_start();
 
     $_SESSION['cadNom'] = true;
+    $_SESSION['cadeauValide'] = false;
+    $_SESSION['cadeauError'] = false;
+    $_SESSION['cadeauEnregistre'] = false;
+
     if ($_POST["nom"] != null) {
         
         $nom = $_POST['nom'];   
@@ -26,12 +30,12 @@
         if(!$found){
             $requete = "INSERT INTO cadeau (nom, lien, image, description) VALUES ('$nom','$lien','$img','$desc')";
             if(mysqli_query($bd->co,$requete)){
-                $_SESSION['cadeauValidee'] = true;
+                $_SESSION['cadeauValide'] = true;
                 header("Location: ../Controleur/script_cadeaux.php");
             }
             else{
-                $_SESSION['cadeaunError'] = true;
-                //header("Location: ../Vue/formulaire_cadeau.php");
+                $_SESSION['cadeauError'] = true;
+                header("Location: ../Vue/formulaire_cadeau.php");
             }
         } 
         else{
