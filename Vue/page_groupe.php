@@ -33,9 +33,9 @@ require_once("../Modele/utilisateur.php");
         </header>
 
         <h1>Vos groupes</h1>
-
-        <a href="nouveau_groupe.php" class="button"><span>Nouveau</span></a>
-
+        <?php
+        echo '<a href="nouveau_groupe.php?pid='.$user->getID().'" class="button"><span>Nouveau</span></a>';
+        ?>
         <table>
             <?php
                 if(isset($_GET['gid'])){
@@ -68,10 +68,33 @@ require_once("../Modele/utilisateur.php");
 
                 echo '<table class="tmg">';
 
+                $sql = 'SELECT administrateur FROM acces_groupe WHERE id_utilisateur = '.$user->getId().' AND id_groupe = '.$_GET['gid'];
+                $result = mysqli_query($bd->co, $sql);
+                $donnees = mysqli_fetch_assoc($result);
+                $admin = $donnees['administrateur'];
+
                 $sql = 'SELECT U.prenom, U.nom, U.age, U.id FROM utilisateur U, acces_groupe AG WHERE U.id = AG.id_utilisateur AND AG.id_groupe = '.$_GET['gid'];
                 $result = mysqli_query($bd->co, $sql);
                 while($donnees = mysqli_fetch_assoc($result)){
+                    echo '<tr><td>';
                     echo '<a class="button" href="page_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>'.$donnees['prenom']." ".$donnees['nom']." (".$donnees['age'].")</span></a>";
+
+                    if($admin) {
+
+                        $sql2 = 'SELECT administrateur FROM acces_groupe WHERE id_utilisateur = '.$donnees['id'].' AND id_groupe = '.$_GET['gid'];
+                        $result2 = mysqli_query($bd->co, $sql2);
+                        $donnees2 = mysqli_fetch_assoc($result2);
+
+                        if(!$donnees2['administrateur']){
+                            echo '</td><td>';
+                            echo '<a class="button" href="supprimer_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>ejecter</span></a>"';
+                            echo '</td><td>';
+                            echo '<a class="button" href="op_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>administrateur</span></a>"';
+
+                        }
+                    }
+                    echo '</td></tr>';
+
                     if(isset($_GET['pid']) && $_GET['pid'] == $donnees['id']){
                         $pidv = true;
                     }
