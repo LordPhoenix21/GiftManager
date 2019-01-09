@@ -107,7 +107,7 @@ require_once("../Modele/utilisateur.php");
                             echo '<tr><td>';
                                 echo '<a class="button" href="'.$donnees['lien'].'"><span>'.$donnees['nom']."</span></a>";
                             echo '</td><td>';
-                                echo '<a class="button" href="../Controleur/acheter_cadeau?id_liste='.$donnees['id_liste'].'&id_cadeau='.$donnees['id_cadeau'].'"><span>acheter</span></a>';
+                                echo '<a class="button" href="../Controleur/acheter_cadeau.php?id_liste='.$donnees['id_liste'].'&id_cadeau='.$donnees['id_cadeau'].'&gid='.$_GET['gid'].'&pid='.$_GET['pid'].'"><span>acheter</span></a>';
 
                             echo '</td></tr>';
                         }
