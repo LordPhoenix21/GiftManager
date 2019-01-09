@@ -1,4 +1,9 @@
 <?php
+    if(isset($_GET['deco'])){             
+        if($_GET['deco'] == true){
+            $_SESSION = array();
+        }
+    }
     session_start();
 ?>
 

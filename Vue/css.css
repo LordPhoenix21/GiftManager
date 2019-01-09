@@ -21,6 +21,7 @@ body{
 }
 
 
+
 header {
     overflow: hidden;
     background-color: #b44747;
@@ -42,6 +43,7 @@ header a {
 .header-droite{
     float: right;
 }
+
 
 
 .button {
@@ -80,6 +82,8 @@ header a {
     right: 0;
 }
 
+
+
 .affichage_cadeau{
     width: 100%;
     background-color: #dbaca6e0;
@@ -99,3 +103,64 @@ header a {
     max-height: auto;
 }
 
+
+
+#menu_param, #menu_param ul{
+padding:0;
+margin:0;
+list-style:none;
+text-align:center;
+}
+#menu_param li{
+display:inline-block;
+position:relative;
+}
+#menu_param ul li{
+display:inherit;
+}
+#menu_param ul{
+position:absolute;
+z-index: 1000;
+max-height:0;
+left: 0;
+right: 0;
+overflow:hidden;
+-moz-transition: .8s all .3s;
+-webkit-transition: .8s all .3s;
+transition: .8s all .3s;
+}
+#menu_param li:hover ul{
+max-height:15em;
+}
+/* background des liens menus */
+#menu_param li:first-child{
+background-color: #720000;
+background-image:-webkit-linear-gradient(top, #720000 0%, #4e0101 100%);
+background-image:linear-gradient(to bottom, #720000 0%, #4e0101 100%);
+}
+/* background des liens sous menus */
+#menu_param li:first-child li{
+background:#4e0101;
+}
+/* background des liens menus et sous menus au survol */
+#menu_param li:first-child:hover, #menu_param li:first-child li:hover{
+background:#720000;
+}
+/* les a href */
+#menu_param a{
+text-decoration:none;
+display:block;
+padding:8px 32px;
+color:#fff;
+font-family:arial;
+}
+#menu_param ul a{
+padding:8px 0;
+}
+#menu_param li:hover li a{
+color:#fff;
+text-transform:inherit;
+}
+#menu_param li:hover a, #menu_param li li:hover a{
+color:#000;
+}
