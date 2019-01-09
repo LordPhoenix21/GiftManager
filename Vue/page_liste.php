@@ -1,6 +1,7 @@
 <?php
     require_once("../Modele/liste.php");
-   session_start();    
+    require_once("../Modele/cadeau.php");
+    session_start();    
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +29,16 @@
                         <table>
                             <tr>
                                 <th><?php echo $lis->getNom();?></th>
-                                <th><?php echo $lis->getId();?></th>
                             </tr>
+                            <?php
+                                foreach($lis->getCadeau() as $cad){
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $cad->getNom();?></td>
+                                    </tr>
+                                    <?php
+                                }
+                            ?>
                             <tr>
                                 <td><a href = "../Controleur/script_cadeaux.php?idListe=<?php echo $lis->getId() ?> ">Ajouter un cadeau</a></td>
                             </tr>

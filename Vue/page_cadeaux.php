@@ -24,14 +24,17 @@
     <body>
         <?php
         if(isset($_GET['idListe'])){
-            echo($_GET['idListe']);
             //Affichage en checkbox pour la selection des cadeaux
+            if(isset($_SESSION["addNull"])){
+                if($_SESSION["addNull"] == true){
+                    echo "Rien n'a été coché";
+                }
+            }            
             ?>
             <form method = "post" action ="../Controleur/liste_ajouter.php?idListe=<?php echo $_GET['idListe']; ?>">
             <?php
                 foreach( $_SESSION["array_cadeau"] as $cad){
                     ?>
-                    <?php echo $cad->getId();?>
                     <input type="checkbox" name="cadeau[]" value = "<?php echo $cad->getId();?>">
                     <label for="<?php $cad->getNom();?>"><?php echo $cad->getNom();?></label>
                     <br>
@@ -44,11 +47,15 @@
         }
         else{
             //Affichage normal
+
+
             foreach( $_SESSION["array_cadeau"] as $cad){
                 echo $cad->getNom();?><br>
                 <?php
             }  
             ?>
+
+            
             <a href = "page_cadeaux.php?creerCadeau=true">Creer un cadeau</a>
             <?php
         }         

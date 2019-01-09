@@ -23,6 +23,23 @@ class liste{
     public function getId(){
         return $this->id;
     }
+    public function getNum(){
+        return $this->num;
+    }
+    public function getCadeau(){
+        return $this->cadeau;
+    }
+    public function getfantom(){
+        return $this->fantom;
+    }
+    public function getAchete(){
+        return $this->achete;
+    }
+    public function addCadeau($cadeau, $fantom, $achete){
+        $this->cadeau[] = $cadeau;
+        $this->fantom[] = $fantom;
+        $this->achete[] = $achete;
+    }
 
 }
 ?>
