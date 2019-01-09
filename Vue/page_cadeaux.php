@@ -47,15 +47,27 @@
         }
         else{
             //Affichage normal
-
-
-            foreach( $_SESSION["array_cadeau"] as $cad){
-                echo $cad->getNom();?><br>
-                <?php
-            }  
             ?>
-
-            
+            <table class = "affichage_cadeau"> 
+                <tr>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th>Lien</th>
+                    <th>Descrition</th>
+                </tr>
+                <?php
+                    foreach( $_SESSION["array_cadeau"] as $cad){
+                        ?>
+                        <tr>
+                            <td><img src = <?php echo $cad->getImage()?> alt = "Ce cadeau n'a pas d'image"></td>
+                            <td><?php echo $cad->getNom(); ?></td>
+                            <td><a href = <?php echo $cad->getLien(); ?>> <?php echo $cad->getLien();?> </a></td>
+                            <td><?php echo $cad->getDesc(); ?></td>
+                        <tr>
+                        <?php
+                    }  
+                ?>
+            </table>
             <a href = "page_cadeaux.php?creerCadeau=true">Creer un cadeau</a>
             <?php
         }         

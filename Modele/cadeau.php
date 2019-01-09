@@ -21,5 +21,14 @@ class cadeau{
     public function getId(){
         return $this->id;
     }
+    public function getLien(){
+        return $this->lien;
+    }
+    public function getImage(){
+        return $this->image;
+    }
+    public function getDesc(){
+        return $this->desc;
+    }
 }
 ?>

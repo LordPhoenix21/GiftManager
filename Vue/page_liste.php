@@ -23,30 +23,40 @@
         </div> 
     </header>
     <body>
-            <?php
-                foreach($_SESSION["array_liste"] as $lis){
-                    ?>
-                        <table>
-                            <tr>
-                                <th><?php echo $lis->getNom();?></th>
-                            </tr>
-                            <?php
-                                foreach($lis->getCadeau() as $cad){
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $cad->getNom();?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            ?>
-                            <tr>
-                                <td><a href = "../Controleur/script_cadeaux.php?idListe=<?php echo $lis->getId() ?> ">Ajouter un cadeau</a></td>
-                            </tr>
-                        </table>
-                    <?php
-                }
-            ?>
-            <br>
-            <a href = "../Vue/formulaire_liste.php">Creer une liste</a>
+        <h1> Vos Listes </h1>
+        <?php
+            foreach($_SESSION["array_liste"] as $lis){
+                ?>
+                    <table class = "affichage_cadeau">
+                        <tr>
+                            <th class = "titre_liste" colspan="4"><?php echo $lis->getNom();?></th>
+                        </tr>
+                        <tr>
+                            <th>Image</th>
+                            <th>Nom</th>
+                            <th>Lien</th>
+                            <th>Descrition</th>
+                        </tr>
+                        <?php
+                            foreach($lis->getCadeau() as $cad){
+                                ?>
+                                <tr>
+                                    <td><img src = <?php echo $cad->getImage()?> alt = "Ce cadeau n'a pas d'image"></td>
+                                    <td><?php echo $cad->getNom(); ?></td>
+                                    <td><a href = <?php echo $cad->getLien(); ?>> <?php echo $cad->getLien();?> </a></td>
+                                    <td><?php echo $cad->getDesc(); ?></td>
+                                <tr>
+                                <?php
+                            }  
+                        ?>
+                        <tr>
+                            <td colspan="4"><a href = "../Controleur/script_cadeaux.php?idListe=<?php echo $lis->getId() ?> ">Ajouter un cadeau</a></td>
+                        </tr>
+                    </table>
+                <?php
+            }
+        ?>
+        <br>
+        <a href = "../Vue/formulaire_liste.php">Creer une liste</a>
     </body>
 </html>
