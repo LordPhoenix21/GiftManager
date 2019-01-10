@@ -44,10 +44,18 @@ require_once("../Modele/utilisateur.php");
                 $user = unserialize($_SESSION['utilisateur']);
                 $bd = new bd();
                 $bd->connect();
-                $sql = 'SELECT G.nom, G.id FROM groupe G, acces_groupe AG WHERE G.id = AG.id_groupe AND AG.id_utilisateur = '.$user->getId();
+                $sql = 'SELECT G.nom, G.id, AG.administrateur FROM groupe G, acces_groupe AG WHERE G.id = AG.id_groupe AND AG.id_utilisateur = '.$user->getId();
                 $result = mysqli_query($bd->co, $sql);
                 while($donnees = mysqli_fetch_assoc($result)){
-                    echo '<tr><td><a href="page_groupe.php?gid='.$donnees['id'].'" class="button"><span>'.$donnees['nom'].'</span></a></td></tr>';
+                    echo '<tr><td><a href="page_groupe.php?gid='.$donnees['id'].'" class="button"><span>'.$donnees['nom'].'</span></a></td>';
+
+                        if($donnees['administrateur']){
+                            echo '<td><a href="../Controleur/supprimer_groupe.php?gid='.$donnees['id'].'" class="button"><span>Supprimer</span></a></td>';
+                        }
+
+                    echo '</tr>';
+
+
                     if(isset($_GET['gid']) && $_GET['gid'] == $donnees['id']){
                         $gidv = true;
                     }
@@ -87,9 +95,9 @@ require_once("../Modele/utilisateur.php");
 
                         if(!$donnees2['administrateur']){
                             echo '</td><td>';
-                            echo '<a class="button" href="supprimer_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>ejecter</span></a>"';
+                            echo '<a class="button" href="../Controleur/supprimer_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>ejecter</span></a>"';
                             echo '</td><td>';
-                            echo '<a class="button" href="op_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>administrateur</span></a>"';
+                            echo '<a class="button" href="../Controleur/op_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>administrateur</span></a>"';
 
                         }
                     }
