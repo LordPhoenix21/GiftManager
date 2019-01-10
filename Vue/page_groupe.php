@@ -53,6 +53,7 @@ require_once("../Modele/utilisateur.php");
 
                         if($donnees['administrateur']){
                             echo '<td><a href="../Controleur/supprimer_groupe.php?gid='.$donnees['id'].'" class="button"><span>Supprimer</span></a></td>';
+                            echo '<td><a href="formulaire_ajout_membre.php?gid='.$donnees['id'].'" class="button"><span>Inviter</span></a></td>';
                         }
 
                     echo '</tr>';
