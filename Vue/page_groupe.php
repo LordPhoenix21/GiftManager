@@ -15,9 +15,11 @@ require_once("../Modele/utilisateur.php");
         <header>
             <img src="Logo.png" class = "logo" alt="Logo" height="2%" width="2%">
             <div class = "header-liens"> 
-                <a href = "page_groupe.php"> Vos Groupes </a>
-                <a href = "../Controleur/script_liste.php""> Vos Listes </a>
-                <a href = "../Controleur/script_cadeaux.php"> Les cadeaux </a>
+                <ul>
+                    <li><a href = "page_groupe.php"> Vos Groupes </a></li>
+                    <li><a href = "../Controleur/script_liste.php"> Vos Listes </a></li>
+                    <li><a href = "../Controleur/script_cadeaux.php"> Les cadeaux </a></li>
+                </ul>
             </div>
             <div class = "header-droite">
                 <ul id="menu_param">

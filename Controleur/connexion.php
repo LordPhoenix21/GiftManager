@@ -36,7 +36,7 @@
                 $_SESSION['utilisateur'] = serialize(new utilisateur($row["id"],$row["nom"],$row["prenom"],$row["mail"],$row["age"],$row["actif"],$row["user"],$row["mdp"]));
                 $_SESSION['verifMdp'] = true;
 
-                header("Location: ../Vue/page_interne.php");
+                header("Location: ../Vue/page_groupe.php");
             }
             else{
                 $_SESSION['verifMdp'] = false;

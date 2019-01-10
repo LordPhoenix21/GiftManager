@@ -43,6 +43,27 @@ header a {
 .header-droite{
     float: right;
 }
+.header-liens ul{
+    display: table;
+    background:-webkit-linear-gradient(#720000, #4e0101);
+    background:linear-gradient(#720000, #4e0101);
+    padding: 0;
+}
+.header-liens ul li{
+    display: table-cell;
+}
+.header-liens a{
+    padding: 8px 8px 17px 8px;
+    color:#fff;
+}
+.header-liens li:hover a{
+    color:#000;
+}
+
+
+
+
+
 
 
 
