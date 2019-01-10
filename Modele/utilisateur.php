@@ -46,6 +46,27 @@ class utilisateur{
         return $this->mdp;
     }
 
+    public function setNom($nom){
+        $this->nom = $nom;
+    }
+    public function setPrenom($prenom){
+        $this->prenom = $prenom;
+    }
+    public function setMail($mail){
+        $this->mail = $mail;
+    }
+    public function setAge($age){
+        $this->age = $age;
+    }
+    public function setActif($actif){
+        $this->actif = $actif;
+    }
+    public function setUser($user){
+        $this->user = $user;
+    }
+    public function setMdp($mdp){
+        $this->mdp = $mdp;
+    }
 
 
 
