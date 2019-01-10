@@ -1,7 +1,10 @@
 <?php
-session_start();
-require_once("../Modele/bd.php");
-require_once("../Modele/utilisateur.php");
+    session_start();
+    require_once("../Modele/bd.php");
+    require_once("../Modele/utilisateur.php");
+
+    $bd = new bd();
+    $bd->connect();
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +39,7 @@ require_once("../Modele/utilisateur.php");
 
         <h1>inviter membre</h1>
 
-        <form action="../Controleur/ajout_membre.php?gid=<?php echo $_GET['gid']?>" method="post">
+        <form action="../Controleur/ajout_membre.php?mode=1&gid=<?php echo $_GET['gid']?>" method="post">
 
             <table>
                 <tr>
@@ -46,6 +49,24 @@ require_once("../Modele/utilisateur.php");
 
             <input type="submit" class="button">
 
+        </form>
+
+        <p>Or add one of your inactive account</p>
+
+
+        <form action="../Controleur/ajout_membre.php?mode=0&gid=<?php echo $_GET['gid']?>" method="post">
+            <table>
+
+                <?php
+                $sql = 'SELECT GI.num_inactif, U.prenom, U.nom FROM gestion_inactif GI, utilisateur U WHERE  U.id = GI.num_inactif AND num_actif = '.$user->getId();
+                $result = mysqli_query($bd->co, $sql);
+                while($donnees = mysqli_fetch_assoc($result)){
+                    echo '<tr><td><input type="radio" name="selection" value="'.$donnees['num_inactif'].'"></td><td>'.$donnees['prenom'].' '.$donnees['nom'].'</td></tr>';
+                }
+                ?>
+
+            </table>
+            <input type="submit" class="button">
         </form>
 
     </body>
