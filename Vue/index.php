@@ -1,9 +1,5 @@
 <?php
-    if(isset($_GET['deco'])){             
-        if($_GET['deco'] == true){
-            $_SESSION = array();
-        }
-    }
+    
     session_start();
 ?>
 
@@ -45,7 +41,7 @@
                         }
                     ?>
                     <br>
-                    Mot de passe : <input type = "text" name = "mdp">
+                    Mot de passe : <input type = "password" name = "mdp">
                     <?php
                         if(isset($_SESSION['verifMdp'])){                    
                              if($_SESSION['verifMdp'] == false){
@@ -59,4 +55,11 @@
             </div>
         </section>
     </body>
+    <?php
+        if(isset($_GET['deco'])){             
+            if($_GET['deco'] == true){
+                session_destroy();
+            }
+        }
+    ?>
 </html>

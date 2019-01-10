@@ -49,9 +49,9 @@
                 }
             ?>          
             <br>
-            Mot de passe : <input type = "text" name = "mdp" />
+            Mot de passe : <input type = "password" name = "mdp" />
             <?php  verif('insMdp'); ?>  <br>
-            Confirmez Mot de passe : <input type = "text" name = "mdpConfirm" />
+            Confirmez Mot de passe : <input type = "password" name = "mdpConfirm" />
             <?php 
                 verif('insMdpConfirm'); 
                 if(isset($_SESSION['mdpDiff'])){             

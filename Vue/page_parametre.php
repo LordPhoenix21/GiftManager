@@ -45,7 +45,7 @@
             <table>
                 <tr>
                     <td> Ancien Mot de passe : </td>
-                    <td><input type = "text" name = "oldMdp" /></td>
+                    <td><input type = "password" name = "oldMdp" /></td>
                     <td>
                         <?php  
                             verif('changeOldMdp');
@@ -59,14 +59,14 @@
                 </tr>
                 <tr>
                     <td> Nouveau Mot de passe : </td>
-                    <td><input type = "text" name = "newMdp"/></td>
+                    <td><input type = "password" name = "newMdp"/></td>
                     <td>    
                         <?php verif('changeNewMdp'); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Confirmez nouveau Mot de passe : </td>
-                    <td><input type = "text" name = "mdpConfirm"/></td>
+                    <td><input type = "password" name = "mdpConfirm"/></td>
                     <td>
                         <?php  
                             verif('changeMdpConfirm'); 
@@ -143,7 +143,7 @@
                 </tr>
                 <tr> 
                     <td>Confirmez les changements en entrant votre mot de passe : </td>
-                    <td><input type = "text" name = "mdpConfirm" /></td>
+                    <td><input type = "password" name = "mdpConfirm" /></td>
                     <td>
                         <?php 
                             verif('confirmation'); 
@@ -160,6 +160,13 @@
                 </tr>
             </table>
         </form>
+        <?php 
+            if(isset($_SESSION['suppression_impossible'])){             
+                if($_SESSION['suppression_impossible'] == true){
+                    echo "Impossible de supprimer votre compte car vous êtes administrateur d'un groupe. <br> Donnez vos droits d'administrateur à un autre utilisateur ou supprimer le groupe.";
+                }
+            }
+        ?>
         <a href="../Vue/page_parametre.php?suppr=true" class="button"><span>Supprimer Compte</span></a>
         <?php
             if(isset($_GET['suppr'])){

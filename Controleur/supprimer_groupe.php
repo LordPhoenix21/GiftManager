@@ -20,5 +20,6 @@
         mysqli_query($bd->co, $sql);
     }
 
+    
     header('Location: ../Vue/page_groupe.php');
 ?>
