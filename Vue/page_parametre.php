@@ -37,32 +37,53 @@
         <?php 
             if(isset($_SESSION['updateMdp'])){             
                 if($_SESSION['updateMdp'] == true){
-                    echo "Votre mot de passe a été correctement changé";
+                    echo "Votre mot de passe a été correctement changé <br>";
                 }
             }
         ?>
         <form method = "post" action ="../Controleur/changer_mdp.php">
-            Ancien Mot de passe : <input type = "text" name = "oldMdp" />
-            <?php  
-                verif('changeOldMdp');
-                if(isset($_SESSION['mdpFalse'])){             
-                    if($_SESSION['mdpFalse'] == true){
-                        echo " Mot de passe Faux";
-                    }
-                }
-            ?>  <br>
-            Nouveau Mot de passe : <input type = "text" name = "newMdp" />
-            <?php verif('changeNewMdp');  ?>  <br>
-            Confirmez nouveau Mot de passe <input type = "text" name = "mdpConfirm" />
-            <?php  
-                verif('changeMdpConfirm'); 
-                if(isset($_SESSION['mdpDiff'])){             
-                    if($_SESSION['mdpDiff'] == true){
-                        echo " Les mots de passe sont différents";
-                    }
-                } 
-            ?>  <br>
-            <input type = "submit" value ="Changer de Mot de passe">
+            <table>
+                <tr>
+                    <td> Ancien Mot de passe : </td>
+                    <td><input type = "text" name = "oldMdp" /></td>
+                    <td>
+                        <?php  
+                            verif('changeOldMdp');
+                            if(isset($_SESSION['mdpFalse'])){             
+                                if($_SESSION['mdpFalse'] == true){
+                                    echo " Mot de passe Faux";
+                                }
+                            }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Nouveau Mot de passe : </td>
+                    <td><input type = "text" name = "newMdp"/></td>
+                    <td>    
+                        <?php verif('changeNewMdp'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Confirmez nouveau Mot de passe : </td>
+                    <td><input type = "text" name = "mdpConfirm"/></td>
+                    <td>
+                        <?php  
+                            verif('changeMdpConfirm'); 
+                            if(isset($_SESSION['mdpDiff'])){             
+                                if($_SESSION['mdpDiff'] == true){
+                                    echo " Les mots de passe sont différents";
+                                }
+                            } 
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       <input type = "submit" value ="Changer de Mot de passe"/>
+                    </td>
+                </tr>            
+           <table>
         </form>
 
         <h2>Changer les autres parametres </h2>
@@ -74,49 +95,84 @@
             }
         ?>
         Seuls les champs où vous rentrez du texte seront changées. <br>
-        Pensez à rentré votre mot de passe pour confirmer les changements.
+        Pensez à rentré votre mot de passe pour confirmer les changements.<br>
         <form method = "post" action ="../Controleur/changer_param.php">
-             Nom : <input type = "text" name = "nom" />
-             <?php updateDone('updateNom'); ?>
-            <br>
-            Prénom : <input type = "text" name = "prenom" />
-            <?php updateDone('updatePrenom'); ?>
-             <br>
-            Adresse mail : <input type = "text" name = "mail" />
-            <?php updateDone('updateMail'); ?>
-            <br>
-            Age : <input type = "text" name = "age" />
-            <?php   
-                if(isset($_SESSION['verifAge'])){             
-                    if($_SESSION['verifAge'] == false){
-                        echo " Veuillez choisir un age valide en chiffre";
-                    }
-                }
-                updateDone('updateAge');
-            ?>  
-            <br>
-            Login : <input type = "text" name = "user" />
-            <?php  
-                if(isset($_SESSION['userEnregistre'])){             
-                    if($_SESSION['userEnregistre'] == true){
-                        echo " Ce nom d'utilisateur existe déjà, veuillez en choisir un autre";
-                    }
-                }
-                updateDone('updateUser');
-            ?>          
-            <br>
-            Confirmez les changements en entrant votre mot de passe : <input type = "text" name = "mdpConfirm" />
-            <?php 
-                verif('confirmation'); 
-                if(isset($_SESSION['mdpFalse'])){             
-                    if($_SESSION['mdpFalse'] == true){
-                        echo " Mot de passe incorrect";
-                    }
-                }
-            ?>  <br>
-            <input type = "submit" value ="Changer ces parametres">
+            <table>
+                <tr>
+                    <td>Nom : </td>
+                    <td><input type = "text" name = "nom" /></td>
+                    <td><?php updateDone('updateNom'); ?></td>
+                </tr>
+                <tr>
+                    <td>Prénom : </td>
+                    <td><input type = "text" name = "prenom" /></td>
+                    <td><?php updateDone('updatePrenom'); ?></td>
+                </tr>
+                <tr>
+                    <td>Adresse mail : </td>
+                    <td><input type = "text" name = "mail" /></td>
+                    <td><?php updateDone('updateMail'); ?></td>
+                </tr>
+                <tr>
+                    <td>Age : </td>
+                    <td><input type = "text" name = "age" /></td>
+                    <td>
+                        <?php   
+                            if(isset($_SESSION['verifAge'])){             
+                                if($_SESSION['verifAge'] == false){
+                                    echo " Veuillez choisir un age valide en chiffre";
+                                }
+                            }
+                            updateDone('updateAge');
+                       ?>  
+                    </td>
+                </tr>
+                <tr>
+                    <td>Login : </td>
+                    <td><input type = "text" name = "user" /></td>
+                    <td>
+                        <?php  
+                            if(isset($_SESSION['userEnregistre'])){             
+                                if($_SESSION['userEnregistre'] == true){
+                                    echo " Ce nom d'utilisateur existe déjà, veuillez en choisir un autre";
+                                }
+                            }
+                            updateDone('updateUser');
+                        ?>          
+                    </td>
+                </tr>
+                <tr> 
+                    <td>Confirmez les changements en entrant votre mot de passe : </td>
+                    <td><input type = "text" name = "mdpConfirm" /></td>
+                    <td>
+                        <?php 
+                            verif('confirmation'); 
+                            if(isset($_SESSION['mdpFalse'])){             
+                                if($_SESSION['mdpFalse'] == true){
+                                    echo " Mot de passe incorrect";
+                                }
+                            }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type = "submit" value ="Changer ces parametres"></td>
+                </tr>
+            </table>
         </form>
-
+        <a href="../Vue/page_parametre.php?suppr=true" class="button"><span>Supprimer Compte</span></a>
+        <?php
+            if(isset($_GET['suppr'])){
+            ?>
+            Etes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.
+                <table>
+                    <tr>
+                        <td><a href="../Controleur/suppression_compte.php" class="button"><span>Oui</span></a></td>
+                        <td><a href="../Vue/page_parametre.php" class="button"><span>Non</span></a></td>
+                </table>
+                <?php
+            }
+        ?>
     </body>
 </html>
 
