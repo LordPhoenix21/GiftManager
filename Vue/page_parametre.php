@@ -1,4 +1,5 @@
 <?php
+    require_once("../Modele/bd.php");
    require_once("../Modele/utilisateur.php");
    session_start();    
 ?>
@@ -45,7 +46,7 @@
             <table>
                 <tr>
                     <td> Ancien Mot de passe : </td>
-                    <td><input type = "password" name = "oldMdp" /></td>
+                    <td><input type = "text" name = "oldMdp" /></td>
                     <td>
                         <?php  
                             verif('changeOldMdp');
@@ -59,14 +60,14 @@
                 </tr>
                 <tr>
                     <td> Nouveau Mot de passe : </td>
-                    <td><input type = "password" name = "newMdp"/></td>
+                    <td><input type = "text" name = "newMdp"/></td>
                     <td>    
                         <?php verif('changeNewMdp'); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Confirmez nouveau Mot de passe : </td>
-                    <td><input type = "password" name = "mdpConfirm"/></td>
+                    <td><input type = "text" name = "mdpConfirm"/></td>
                     <td>
                         <?php  
                             verif('changeMdpConfirm'); 
@@ -143,7 +144,7 @@
                 </tr>
                 <tr> 
                     <td>Confirmez les changements en entrant votre mot de passe : </td>
-                    <td><input type = "password" name = "mdpConfirm" /></td>
+                    <td><input type = "text" name = "mdpConfirm" /></td>
                     <td>
                         <?php 
                             verif('confirmation'); 
@@ -160,13 +161,32 @@
                 </tr>
             </table>
         </form>
-        <?php 
-            if(isset($_SESSION['suppression_impossible'])){             
+        <?php
                 if($_SESSION['suppression_impossible'] == true){
                     echo "Impossible de supprimer votre compte car vous êtes administrateur d'un groupe. <br> Donnez vos droits d'administrateur à un autre utilisateur ou supprimer le groupe.";
                 }
             }
         ?>
+
+        <h2>Vos comptes inactifs</h2>
+
+        <a href="../Vue/inscription_inactif.php" class="button"><span>ajouter un compte inactif</span></a>
+
+        <table>
+        <?php
+        $bd = new bd();
+        $bd->connect();
+        $sql = 'SELECT GI.num_inactif, U.prenom, U.nom FROM gestion_inactif GI, utilisateur U WHERE  U.id = GI.num_inactif AND num_actif = '.$user->getId();
+        $result = mysqli_query($bd->co, $sql);
+
+        while($donnees = mysqli_fetch_assoc($result)){
+            echo '<tr><td>'.$donnees['prenom'].' '.$donnees['nom'].'</td><td><a href="inactif_actif.php?pid='.$donnees['num_inactif'].'"><span>activer</span></a></td></tr>';
+        }
+        ?>
+        </table>
+
+
+
         <a href="../Vue/page_parametre.php?suppr=true" class="button"><span>Supprimer Compte</span></a>
         <?php
             if(isset($_GET['suppr'])){

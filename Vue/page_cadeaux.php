@@ -93,7 +93,7 @@
             if(isset($_GET['creerCadeau'])){
                 ?>
                 Seul le champ nom est obligatoire
-                <form method = "post" action ="../Controleur/creer_cadeau.php">
+                <form method = "post" action ="../Controleur/creer_cadeau.php" enctype="multipart/form-data">
                 Nom : <input type = "text" name = "nom" />
                 <?php 
                     if(isset($_SESSION["cadNom"])){                    
@@ -111,7 +111,7 @@
                 <br>
                 Lien : <input type = "text" name = "lien" />
                 <br>
-                Adresse de l'image : <input type = "text" name = "img" />
+                image: <input type = "file" name = "img" />
                 <br>
                 Description : <input type = "text" name = "desc" />
                 <br>

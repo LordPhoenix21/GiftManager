@@ -10,8 +10,7 @@
     if ($_POST["nom"] != null) {
         
         $nom = $_POST['nom'];   
-        $lien = $_POST['lien']; 
-        $img = $_POST['img'];
+        $lien = $_POST['lien'];
         $desc = $_POST['desc'];
 
         $bd = new bd();
@@ -28,7 +27,13 @@
             }
         }
         if(!$found){
-            $requete = "INSERT INTO cadeau (nom, lien, image, description) VALUES ('$nom','$lien','$img','$desc')";
+
+            $target_dir = '../Uploads/';
+            $target_file = $target_dir.$_FILES["img"]["name"];
+
+            echo move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
+
+            $requete = "INSERT INTO cadeau (nom, lien, image, description) VALUES ('$nom','$lien','$target_file','$desc')";
             if(mysqli_query($bd->co,$requete)){
                 $_SESSION['cadeauValide'] = true;
                 header("Location: ../Controleur/script_cadeaux.php");
