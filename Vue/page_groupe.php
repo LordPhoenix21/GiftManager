@@ -90,19 +90,22 @@ require_once("../Modele/utilisateur.php");
                     echo '<tr><td>';
                     echo '<a class="button" href="page_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>'.$donnees['prenom']." ".$donnees['nom']." (".$donnees['age'].")</span></a>";
 
+                    $sql2 = 'SELECT administrateur, id_liste FROM acces_groupe WHERE id_utilisateur = '.$donnees['id'].' AND id_groupe = '.$_GET['gid'];
+                    $result2 = mysqli_query($bd->co, $sql2);
+                    $donnees2 = mysqli_fetch_assoc($result2);
+
                     if($admin) {
-
-                        $sql2 = 'SELECT administrateur FROM acces_groupe WHERE id_utilisateur = '.$donnees['id'].' AND id_groupe = '.$_GET['gid'];
-                        $result2 = mysqli_query($bd->co, $sql2);
-                        $donnees2 = mysqli_fetch_assoc($result2);
-
+                        
                         if(!$donnees2['administrateur']){
                             echo '</td><td>';
                             echo '<a class="button" href="../Controleur/supprimer_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>ejecter</span></a>"';
                             echo '</td><td>';
                             echo '<a class="button" href="../Controleur/op_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>administrateur</span></a>"';
-
                         }
+                    }
+                    if($user->getId() == $donnees['id'] && is_null($donnees2['id_liste'])){
+                        echo '</td><td>';
+                        echo '<a class="button" href="formulaire_selection_liste.php?gid='.$_GET['gid'].'"><span>add list</span></a>"';
                     }
                     echo '</td></tr>';
 
