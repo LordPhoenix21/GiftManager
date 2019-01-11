@@ -162,6 +162,7 @@
             </table>
         </form>
         <?php
+            if(isset($_SESSION['suppression_impossible'])){
                 if($_SESSION['suppression_impossible'] == true){
                     echo "Impossible de supprimer votre compte car vous êtes administrateur d'un groupe. <br> Donnez vos droits d'administrateur à un autre utilisateur ou supprimer le groupe.";
                 }

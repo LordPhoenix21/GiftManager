@@ -95,7 +95,7 @@ require_once("../Modele/utilisateur.php");
                     $donnees2 = mysqli_fetch_assoc($result2);
 
                     if($admin) {
-                        
+
                         if(!$donnees2['administrateur']){
                             echo '</td><td>';
                             echo '<a class="button" href="../Controleur/supprimer_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>ejecter</span></a>"';
