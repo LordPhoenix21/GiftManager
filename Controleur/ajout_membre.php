@@ -40,7 +40,9 @@
             }
         }
         else{
-            
+            $sql = 'insert into acces_groupe (id_groupe, id_utilisateur, administrateur) values ('.$_GET['gid'].', '.$_POST['selection'].', 0)';
+            echo $sql;
+            mysqli_query($bd->co, $sql);
         }
 
     }
