@@ -52,8 +52,8 @@ require_once("../Modele/utilisateur.php");
                     echo '<tr><td><a href="page_groupe.php?gid='.$donnees['id'].'" class="button"><span>'.$donnees['nom'].'</span></a></td>';
 
                         if($donnees['administrateur']){
-                            echo '<td><a href="../Controleur/supprimer_groupe.php?gid='.$donnees['id'].'" class="button"><span>Supprimer</span></a></td>';
-                            echo '<td><a href="formulaire_ajout_membre.php?gid='.$donnees['id'].'" class="button"><span>Inviter</span></a></td>';
+                            echo '<td><a href="../Controleur/supprimer_groupe.php?gid='.$donnees['id'].'" class="icobutton" ><img style="background-color: red" src="del.png"></a></td>';
+                            echo '<td><a href="formulaire_ajout_membre.php?gid='.$donnees['id'].'" class="icobutton" ><img style="background-color: gray" src="inv.png"></a></td>';
                         }
 
                     echo '</tr>';
@@ -98,9 +98,9 @@ require_once("../Modele/utilisateur.php");
 
                         if(!$donnees2['administrateur']){
                             echo '</td><td>';
-                            echo '<a class="button" href="../Controleur/supprimer_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>ejecter</span></a>"';
+                            echo '<a class="icobutton" href="../Controleur/supprimer_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><img style="background-color: red" src="del.png"></a>';
                             echo '</td><td>';
-                            echo '<a class="button" href="../Controleur/op_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><span>administrateur</span></a>"';
+                            echo '<a class="icobutton" href="../Controleur/op_membre_groupe.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><img style="background-color: lightgreen   " src="op.png"></a>';
                         }
                     }
                     if($user->getId() == $donnees['id'] && is_null($donnees2['id_liste'])){
@@ -144,7 +144,7 @@ require_once("../Modele/utilisateur.php");
                             echo '<tr><td>';
                                 echo '<a class="button" href="'.$donnees['lien'].'"><span>'.$donnees['nom']."</span></a>";
                             echo '</td><td>';
-                                echo '<a class="button" href="../Controleur/acheter_cadeau.php?id_liste='.$donnees['id_liste'].'&id_cadeau='.$donnees['id_cadeau'].'&gid='.$_GET['gid'].'&pid='.$_GET['pid'].'"><span>acheter</span></a>';
+                                echo '<a class="icobutton" href="../Controleur/acheter_cadeau.php?id_liste='.$donnees['id_liste'].'&id_cadeau='.$donnees['id_cadeau'].'&gid='.$_GET['gid'].'&pid='.$_GET['pid'].'"><img style="background-color: lightgreen" src="gift.png"></a>';
 
                             echo '</td></tr>';
                         }
