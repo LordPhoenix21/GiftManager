@@ -33,56 +33,42 @@
         </div> 
     </header>
     <body>
-        <?php
-        if(isset($_GET['idListe'])){
-            //Affichage en checkbox pour la selection des cadeaux
-            if(isset($_SESSION["addNull"])){
-                if($_SESSION["addNull"] == true){
-                    echo "Rien n'a été coché";
-                }
-            }            
-            ?>
-            <form method = "post" action ="../Controleur/liste_ajouter.php?idListe=<?php echo $_GET['idListe']; ?>">
+        <form method = "post" action ="../Controleur/script_cadeaux.php?search=true&<?php if(isset($_GET['idListe']))echo 'idListe='.$_GET['idListe']?>">
+            <input type ="text" name = "searchBar">
+            <input type = "submit" value ="Rechercher">
+        </form>
+
+        <?php   
+        if(isset($_SESSION["addNull"])){
+            if($_SESSION["addNull"] == true){
+                echo "Rien n'a été coché";
+            }
+        }   
+        if(isset($_GET['idListe'])) echo '<form method = "post" action ="../Controleur/liste_ajouter.php?idListe='.$_GET['idListe'].'">' ?>
+        <table class = "affichage_cadeau"> 
+            <tr>
+                <?php if(isset($_GET['idListe'])) echo "<th>Selection</th>"  ?>
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Lien</th>
+                <th>Descrition</th>
+            </tr>
             <?php
                 foreach( $_SESSION["array_cadeau"] as $cad){
                     ?>
-                    <input type="checkbox" name="cadeau[]" value = "<?php echo $cad->getId();?>">
-                    <label for="<?php $cad->getNom();?>"><?php echo $cad->getNom();?></label>
-                    <br>
+                    <tr>
+                        <?php if(isset($_GET['idListe'])) echo '<td><input type="checkbox" name="cadeau[]" value = "'.$cad->getId().'";"></td>'?>
+                        <td><img src = <?php echo $cad->getImage()?> alt = "Ce cadeau n'a pas d'image"></td>
+                        <td><?php echo $cad->getNom(); ?></td>
+                        <td><a href = <?php echo $cad->getLien(); ?>> <?php echo $cad->getLien();?> </a></td>
+                        <td><?php echo $cad->getDesc(); ?></td>
+                    <tr>
                     <?php
-                } 
-                ?>
-                <input type = "submit" value ="Ajouter">
-            </form>
-            <?php
-        }
-        else{
-            //Affichage normal
+                }  
             ?>
-            <table class = "affichage_cadeau"> 
-                <tr>
-                    <th>Image</th>
-                    <th>Nom</th>
-                    <th>Lien</th>
-                    <th>Descrition</th>
-                </tr>
-                <?php
-                    foreach( $_SESSION["array_cadeau"] as $cad){
-                        ?>
-                        <tr>
-                            <td><img src = <?php echo $cad->getImage()?> alt = "Ce cadeau n'a pas d'image"></td>
-                            <td><?php echo $cad->getNom(); ?></td>
-                            <td><a href = <?php echo $cad->getLien(); ?>> <?php echo $cad->getLien();?> </a></td>
-                            <td><?php echo $cad->getDesc(); ?></td>
-                        <tr>
-                        <?php
-                    }  
-                ?>
-            </table>
-            <a href = "page_cadeaux.php?creerCadeau=true">Creer un cadeau</a>
-            <?php
-        }         
-        ?>
+        </table>
+        <?php if(isset($_GET['idListe'])) echo '<input type = "submit" value ="Ajouter"></form>'?>
+        <a href = "page_cadeaux.php?creerCadeau=true">Creer un cadeau</a>
         <?php    
             //Cas de la création d'un cadeau
             if(isset($_SESSION["cadeauError"])){

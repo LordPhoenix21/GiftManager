@@ -61,12 +61,7 @@ header a {
 }
 
 
-
-
-
-
-
-
+   
 .button {
     display: inline-block;
     border-radius: 4px;
@@ -115,7 +110,8 @@ header a {
     text-align: center;
 }
 .affichage_cadeau td,.affichage_cadeau th{
-    width: 25%;
+    min-width: 20%;
+    max-width: 25%;
     text-align: left;
     border: 1px solid black;
 }
