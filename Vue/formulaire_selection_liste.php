@@ -16,7 +16,7 @@
 
     <body>
         <header>
-            <img src="Logo.png" class = "logo" alt="Logo" height="2%" width="2%">
+            <img src="Logo.png" class = "logo" alt="Logo" height="3%" width="3%">
             <div class = "header-liens">
                 <ul>
                     <li><a href = "page_groupe.php"> Vos Groupes </a></li>
