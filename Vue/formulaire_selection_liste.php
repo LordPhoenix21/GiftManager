@@ -37,7 +37,7 @@
             </div>
         </header>
 
-        <h1>inviter membre</h1>
+        <h1>Ajouter une liste</h1>
 
         <form action="../Controleur/selection_liste.php?gid=<?php echo $_GET['gid']; if(isset($_GET['pid'])){ echo '&pid='.$_GET['pid'];}?>" method="post">
 

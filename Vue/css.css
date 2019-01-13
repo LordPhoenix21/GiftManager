@@ -19,7 +19,15 @@ body{
     border-style : solid;
     background-color: #f04a4a;
 }
-
+@media only screen and (max-width: 600px) {
+    .description{
+        width : auto;
+    }
+    .connexion {
+        width: auto;
+        margin-left: 5%;
+    }
+  }
 
 
 header {
