@@ -105,7 +105,7 @@ require_once("../Modele/utilisateur.php");
                     }
                     if($user->getId() == $donnees['id'] && is_null($donnees2['id_liste'])){
                         echo '</td><td>';
-                        echo '<a class="button" href="formulaire_selection_liste.php?gid='.$_GET['gid'].'"><span>add list</span></a>"';
+                        echo '<a class="icobutton" href="formulaire_selection_liste.php?gid='.$_GET['gid'].'"><img style="background-color: lightgreen   " src="list.png"></a>';
                     }
                     echo '</td></tr>';
 
