@@ -107,6 +107,15 @@ require_once("../Modele/utilisateur.php");
                         echo '</td><td>';
                         echo '<a class="icobutton" href="formulaire_selection_liste.php?gid='.$_GET['gid'].'"><img style="background-color: lightgreen   " src="list.png"></a>';
                     }
+
+                    $sql3 = 'SELECT count(*) as nb FROM gestion_inactif GI, acces_groupe AG WHERE AG.id_utilisateur = GI.num_inactif AND AG.id_liste IS NULL AND num_inactif = '.$donnees['id'].' AND num_actif = '.$user->getId();
+                    $result3 = mysqli_query($bd->co, $sql3);
+                    $donnees3 = mysqli_fetch_assoc($result3);
+
+                    if($donnees3['nb'] == 1){
+                        echo '</td><td>';
+                        echo '<a class="icobutton" href="formulaire_selection_liste.php?gid='.$_GET['gid'].'&pid='.$donnees['id'].'"><img style="background-color: lightgreen   " src="list.png"></a>';
+                    }
                     echo '</td></tr>';
 
                     if(isset($_GET['pid']) && $_GET['pid'] == $donnees['id']){

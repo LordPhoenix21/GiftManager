@@ -39,7 +39,7 @@
 
         <h1>inviter membre</h1>
 
-        <form action="../Controleur/selection_liste.php?gid=<?php echo $_GET['gid']?>" method="post">
+        <form action="../Controleur/selection_liste.php?gid=<?php echo $_GET['gid']; if(isset($_GET['pid'])){ echo '&pid='.$_GET['pid'];}?>" method="post">
 
             <table>
 
