@@ -13,12 +13,16 @@
         <link rel = "stylesheet" href = "css.css">
     </head>
     <header>
-        <img src="Logo.png" class = "logo" alt="Logo" height="3%" width="3%">
+        <img src="Logo.png" class = "logo" alt="Logo" height="2%" width="2%">
         <div class = "header-liens"> 
                 <ul>
                     <li><a href = "page_groupe.php"> Vos Groupes </a></li>
                     <li><a href = "../Controleur/script_liste.php"> Vos Listes </a></li>
                     <li><a href = "../Controleur/script_cadeaux.php"> Les cadeaux </a></li>
+                    <div class="reactive">
+                        <li><a href="page_parametre.php">Paramètres</a></li>
+                        <li><a href="index.php?deco=true">Deconnexion</a></li>
+                    </div>
                 </ul>
             </div>
         <div class = "header-droite">

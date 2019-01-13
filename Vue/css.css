@@ -19,15 +19,7 @@ body{
     border-style : solid;
     background-color: #f04a4a;
 }
-@media only screen and (max-width: 600px) {
-    .description{
-        width : auto;
-    }
-    .connexion {
-        width: auto;
-        margin-left: 5%;
-    }
-  }
+
 
 
 header {
@@ -210,14 +202,27 @@ color:#000;
 	background-color:#EEEEEEEE;
 }
 
-.tmg{
-	position:fixed;
-	left:20%;
-	top:19%;
+@media (min-width: 1000px) {
+    .tmg{
+        position:fixed;
+        left:20%;
+        top:19%;
+    }
+
+    .tcp{
+        position:fixed;
+        top:19%;
+        left:40%;
+    }
+
+    .reactive{
+        display: none;
+    }
 }
 
-.tcp{
-	position:fixed;
-	top:19%;
-	left:40%;
+@media (max-width: 1000px) {
+    .header-droite{
+        display: none;
+    }
+
 }
